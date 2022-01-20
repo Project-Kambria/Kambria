@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     text: {
         margin: 'auto',
         color: '#fff',
-        fontSize: '5vw',
+        fontSize: 35,
     }
 });
