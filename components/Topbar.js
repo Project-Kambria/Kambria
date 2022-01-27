@@ -11,7 +11,7 @@ export default function Topbar() {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'fixed',
+        position: 'relative',
         top: 0,
         zIndex: 3,
         width: '100%',

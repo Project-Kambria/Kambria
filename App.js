@@ -1,31 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Topbar from './components/Topbar';
-import Bottombar from './components/Bottombar';
-import Recipebox from './components/Recipebox';
+import { StatusBar } from 'expo-status-bar';
+
+import HomeScreen from './screens/Home';
+import LoginScreen from './screens/Login';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Topbar/>
-      <View>
-        <Recipebox/>
-        <Recipebox/>
-        <Recipebox/>
-        <Recipebox/>
-      </View>
-      <Bottombar/>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Login" component={LoginScreen}/>
+      </Stack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: '14vw',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});
