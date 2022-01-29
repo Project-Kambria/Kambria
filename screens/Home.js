@@ -5,14 +5,46 @@ import Bottombar from '../components/Bottombar';
 import Recipebox from '../components/Recipebox';
 
 export default function HomeScreen() {
+
+    let state = {
+        // Test data
+        recipes: [
+            {
+                id: 0,
+                name: 'Recipe 1',
+            },
+            {
+                id: 1,
+                name: 'Recipe 2',
+            },
+            {
+                id: 2,
+                name: 'Recipe 3',
+            },
+            {
+                id: 3,
+                name: 'Recipe 4',
+            },
+        ]
+    }
+
+    let alertItemName = (item) => {
+        alert(item.name)
+    }
+
     return (
         <View style={styles.container}>
             <Topbar/>
             <View style={styles.recipesContainer}>
-                <Recipebox/>
-                <Recipebox/>
-                <Recipebox/>
-                <Recipebox/>
+                {
+                    state.recipes.map((item, index) => (
+                        <Recipebox 
+                            key = {item.id} 
+                            name = {item.name}
+                            onPress = {() => alertItemName(item)}
+                        />
+                    ))
+                }
             </View>
             <Bottombar/>
         </View>
@@ -28,7 +60,4 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    recipesContainer: {
-      overflow: 'scroll',
-    }
   });

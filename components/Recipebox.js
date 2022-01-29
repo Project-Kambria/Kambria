@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 
-export default function Recipebox() {
+export default function Recipebox(props) {
     return (
         <View style={styles.container}>
             <Image style={styles.recipeImage} source={require('../assets/placeholder.png')}/>
-          <Text style={styles.text}>Recipe</Text>
+          <Text style={styles.text}>{props.name}</Text>
         </View>
     );
 }

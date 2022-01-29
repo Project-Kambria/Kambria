@@ -6,6 +6,7 @@ export default function Bottombar() {
 
     return (
         <View style={styles.container}>
+            {/* Dev navigation */}
             <Text onPress={() => navigation.navigate('Home')}>Home</Text>
             <Text onPress={() => navigation.navigate('Login')}>Login</Text>
         </View>
@@ -21,9 +22,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#6c8d7d',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    text: {
-        color: '#fff',
-        fontSize: 35,
     },
   });
