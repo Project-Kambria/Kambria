@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
 import Recipebox from '../components/Recipebox';
 
@@ -31,7 +31,7 @@ export default function Home({navigation}) {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView>
             <View style={styles.recipesContainer}>
                 {
                     state.recipes.map((item, index) => (
@@ -43,13 +43,12 @@ export default function Home({navigation}) {
                     ))
                 }
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#fff',
+    recipesContainer: {
       alignItems: 'center',
       justifyContent: 'center',
     },

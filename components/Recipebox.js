@@ -1,4 +1,3 @@
-import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 
 export default function Recipebox(props) {
@@ -13,11 +12,11 @@ export default function Recipebox(props) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#000',
-        margin: '3vw',
+        margin: 8,
     },
     recipeImage: {
-        width: '80vw',
-        height: '50vw',
+        width: 300,
+        height: 180,
     },
     text: {
         margin: 'auto',
