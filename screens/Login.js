@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, Button} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-export default function Login() {
+export default function LoginScreen({}) {
     return (
         <KeyboardAvoidingView style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

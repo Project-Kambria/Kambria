@@ -2,7 +2,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 
 import Recipebox from '../components/Recipebox';
 
-export default function Home({navigation}) {
+export default function HomeScreen() {
 
     let state = {
         // Test data
