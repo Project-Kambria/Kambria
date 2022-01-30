@@ -1,12 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import Bottombar from '../components/Bottombar';
-
-export default function LoginScreen() {
+export default function Login() {
     return (
         <View style={styles.container}>
             <Text>Project Kambria</Text>
-            <Bottombar/>
         </View>
     );
 }
