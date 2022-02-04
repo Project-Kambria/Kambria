@@ -12,6 +12,7 @@ web-build/
 apiKey.txt
 package-lock.json
 package.json
+config.js
 
 # macOS
 .DS_Store

@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, Button} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import firebase from '../database/config'
 
 export default function LoginScreen({}) {
     return (

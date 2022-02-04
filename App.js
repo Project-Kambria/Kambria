@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text } from 'react-native';
@@ -5,19 +6,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
+import RegistrationScreen from './screens/Registration';
 import SettingsScreen from './screens/Settings';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  // Dev: If user is logged in or not
-  const state = {
-    isLoggedIn: false
-  }
+
+  const [user, setUser] = useState(null)
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {state.isLoggedIn ? (
+        { user ? (
           <Stack.Group
             screenOptions={{
               headerStyle: {
@@ -42,6 +43,7 @@ export default function App() {
         ) : (
           <Stack.Group screenOptions={{headerShown: false}}>
             <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Registration" component={RegistrationScreen} />
           </Stack.Group>
         )}
       </Stack.Navigator>
