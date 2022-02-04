@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -9,7 +10,7 @@ import LoginScreen from './screens/Login';
 import RegistrationScreen from './screens/Registration';
 import SettingsScreen from './screens/Settings';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -32,9 +33,9 @@ export default function App() {
               options={({navigation}) => ({
                 headerRight: () => (
                   <TouchableOpacity
-                  style={styles.navBtn}
-                  onPress={() => navigation.navigate('Settings')}>
-                    <Text style={styles.navBtnText}>[Settings]</Text>
+                    style={styles.navBtn}
+                    onPress={() => navigation.navigate('Settings')}>
+                      <Text style={styles.navBtnText}>[Settings]</Text>
                   </TouchableOpacity>
                 )
               })} />

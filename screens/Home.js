@@ -1,8 +1,11 @@
+import { useNavigation } from '@react-navigation/core'
+import React from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native';
 
 import Recipebox from '../components/Recipebox';
 
-export default function HomeScreen() {
+export default function HomeScreen({}) {
+    const navigation = useNavigation()
 
     let state = {
         // Test data
