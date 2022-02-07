@@ -1,88 +1,62 @@
-import { useNavigation } from '@react-navigation/core'
-import React, { useEffect , useState } from 'react'
-import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard} from 'react-native';
+import React, { Component } from 'react';
+import firebase from '../database/config';
+import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, Alert, ActivityIndicator} from 'react-native';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { auth } from '../database/config'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { NativeScreenNavigationContainer } from 'react-native-screens';
 
-export default function LoginScreen({}) {
-    const [fullName, setFullName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
 
-    const navigation = useNavigation()
+class Registration extends Component {
 
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-          if (user) {
-            navigation.navigate("Home")
-          }
-        })
-    
-        return unsubscribe
-      }, [])
-
-    const onFooterLinkPress = () => {
-        navigation.navigate('Login')
+    constructor() {
+      super();
+      this.state = { 
+        displayName: '',
+        email: '', 
+        password: '',
+        isLoading: false
+      }
     }
-
-    const onRegisterPress = () => {
-        /*if (password !== confirmPassword) {
-            alert("Passwords don't match.")
-            return
-        }
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-        // Signed in 
-        firebase.firestore().collection('users')
-        const user = userCredential.user;
-        navigation.navigate('Home');
-        // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        // ..
-        });*/
-        /*if (password !== confirmPassword) {
-            alert("Passwords don't match.")
-            return
-        }
-        initializeApp
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((response) => {
-                const uid = response.user.uid
-                const data = {
-                    id: uid,
-                    email,
-                    fullName,
-                };
-                const usersRef = firebase.firestore().collection('users')
-                usersRef
-                    .doc(uid)
-                    .set(data)
-                    .then(() => {
-                        navigation.navigate('Home', {user: data})
-                    })
-                    .catch((error) => {
-                        alert(error)
-                    });
-            })
-            .catch((error) => {
-                alert(error)
-        });*/
-        auth
-        .createUserWithEmailAndPassword(email, password)
-        .then(userCredentials => {
-            const user = userCredentials.user;
-            console.log('Registered with:', user.email);
-        })
-        .catch(error => alert(error.message))
+  
+    onTextChange = (val, prop) => {
+      const state = this.state;
+      state[prop] = val;
+      this.setState(state);
     }
+  
+    addUser = () => {
+      if(this.state.email === '' && this.state.password === '') {
+        Alert.alert('Enter correct details.')
+      } else {
+        this.setState({
+          isLoading: true,
+        })
+        firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then((res) => {
+          res.user.updateProfile({
+            displayName: this.state.displayName
+          })
+          console.log('User account created.')
+          this.setState({
+            isLoading: false,
+            displayName: '',
+            email: '', 
+            password: ''
+          })
+          this.props.navigation.navigate('Login')
+        })
+        .catch(error => this.setState({ errorMessage: error.message }))
+      }
+    }
+  
+    render() {
+      if(this.state.isLoading){
+        return(
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color="grey"/>
+          </View>
+        )
+      }    
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior='padding'>
@@ -95,37 +69,32 @@ export default function LoginScreen({}) {
                 <View style={styles.form}>
                     <TextInput
                         style={styles.input}
-                        placeholder='Full Name'
-                        onChangeText={(text) => setFullName(text)}
-                        value={fullName}/>
+                        placeholder='Name'
+                        onChangeText={(val) => this.onTextChange(val, 'displayName')}
+                        value={this.state.displayName}/>
                     <TextInput
                         style={styles.input}
                         placeholder="Email"
-                        value={ email }
-                        onChangeText={text => setEmail(text)}/>
+                        value={this.state.email}
+                        onChangeText={(val) => this.onTextChange(val, 'email')}/>
                     <TextInput
                         style={styles.input}
                         placeholder='Password'
-                        value={ password }
-                        onChangeText={text => setPassword(text)}
+                        value={this.state.password}
+                        onChangeText={(val) => this.onTextChange(val, 'password')}
                         secureTextEntry={true}/>
-                    <TextInput
-                        style={styles.input}
-                        secureTextEntry={true}
-                        placeholder='Confirm Password'
-                        onChangeText={(text) => setConfirmPassword(text)}
-                        value={confirmPassword}/>
                     <TouchableOpacity
                         style={styles.btnContainer}
-                        onPress={onRegisterPress}>
+                        onPress={() => this.addUser()}>
                         <Text style={styles.buttonTitle}>Create account</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
+                    <Text style={styles.footerText}>Already got an account? <Text onPress={() => this.props.navigation.navigate('Login')} style={styles.footerLink}>Log in</Text></Text>
                 </View>
         </KeyboardAvoidingView>
     );
+}
 }
 
 const styles = StyleSheet.create({
@@ -169,3 +138,5 @@ const styles = StyleSheet.create({
         marginTop: 10,
     }
 })
+
+export default Registration;

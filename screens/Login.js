@@ -1,83 +1,54 @@
-import { useNavigation } from '@react-navigation/core'
-import React, { useEffect, useState } from 'react'
+import React, { Component } from 'react';
+import firebase from '../database/config'
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard} from 'react-native';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { auth } from '../database/config'
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
-
-export default function LoginScreen({}) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const navigation = useNavigation()
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-          if (user) {
-            navigation.navigate("Home")
-          }
-        })
-    
-        return unsubscribe
-      }, [])
-
-    const onFooterLinkPress = () => {
-        navigation.navigate('Registration')
+class Login extends Component {
+    constructor() {
+      super();
+      this.state = { 
+        email: '', 
+        password: '',
+        isLoading: false
+      }
     }
-
-    const onLoginPress = () => {
-        /*const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            navigation.navigate('Home');
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage);
-        });*/
-        /*initializeApp
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then((response) => {
-                const uid = response.user.uid
-                const usersRef = firebase.firestore().collection('users')
-                usersRef
-                    .doc(uid)
-                    .get()
-                    .then(firestoreDocument => {
-                        if (!firestoreDocument.exists) {
-                            alert("User does not exist anymore.")
-                            return;
-                        }
-                        const user = firestoreDocument.data()
-                        navigation.navigate('Home', {user})
-                    })
-                    .catch(error => {
-                        alert(error)
-                    });
-            })
-            .catch(error => {
-                alert(error)
-            })*/
-            auth
-            .signInWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log('Logged in with:', user.email);
-            })
-            .catch(error => alert(error.message))
+  
+    onTextChange = (val, prop) => {
+      const state = this.state;
+      state[prop] = val;
+      this.setState(state);
     }
-
-    /*const provider = new GoogleAuthProvider();
-
-    const googleAuth = getAuth();
-    signInWithRedirect(googleAuth, provider);*/
+  
+    signIn = () => {
+      if(this.state.email === '' && this.state.password === '') {
+        Alert.alert('Enter correct details.')
+      } else {
+        this.setState({
+          isLoading: true,
+        })
+        firebase
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((res) => {
+          this.setState({
+            isLoading: false,
+            email: '', 
+            password: ''
+          })
+          this.props.navigation.navigate('Home')
+          alert('Logged in to app')
+        })
+        .catch(error => this.setState({ errorMessage: error.message }))
+      }
+    }
+  
+    render() {
+      if(this.state.isLoading){
+        return(
+          <View style={styles.loading}>
+            <ActivityIndicator size="large" color="grey"/>
+          </View>
+        )
+      }
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior='padding'>
@@ -91,23 +62,24 @@ export default function LoginScreen({}) {
                     <TextInput
                         style={styles.input}
                         placeholder="Email"
-                        value={ email }
-                        onChangeText={text => setEmail(text)}/>
+                        value={this.state.email}
+                        onChangeText={(val) => this.onTextChange(val, 'email')}/>
                     <TextInput
                         style={styles.input}
                         placeholder='Password'
-                        value={ password }
-                        onChangeText={text => setPassword(text)}
+                        value={this.state.password}
+                        onChangeText={(val) => this.onTextChange(val, 'password')}
                         secureTextEntry={true}/>
                         <View style={styles.btnContainer}>
-                            <TouchableOpacity title="Submit" onPress={onLoginPress}><Text>Submit</Text></TouchableOpacity>
+                            <TouchableOpacity title="Log in" onPress={() => this.signIn()}><Text>Submit</Text></TouchableOpacity>
                         </View>
                 </View>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+                    <Text style={styles.footerText}>Don't have an account? <Text onPress={() => this.props.navigation.navigate('Registration')} style={styles.footerLink}>Sign up</Text></Text>
                 </View>
         </KeyboardAvoidingView>
     );
+}
 }
 
 const styles = StyleSheet.create({
@@ -151,3 +123,5 @@ const styles = StyleSheet.create({
         marginTop: 10,
     }
 })
+
+export default Login;
