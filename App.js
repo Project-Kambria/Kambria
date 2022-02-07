@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Footer from './components/Footer';
 
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
@@ -12,7 +13,7 @@ const Stack = createStackNavigator();
 export default function App() {
   // Dev: If user is logged in or not
   const state = {
-    isLoggedIn: false
+    isLoggedIn: true
   }
   return (
     <NavigationContainer>
@@ -45,6 +46,7 @@ export default function App() {
           </Stack.Group>
         )}
       </Stack.Navigator>
+      <Footer/>
     </NavigationContainer>
   );
 }
