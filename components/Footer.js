@@ -1,20 +1,20 @@
 import { View, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Footer(navigation) {
+export default function Footer(navigationRef) {
     return (
         <View style={styles.container}>
             {/* Ísskápur */}
             <TouchableOpacity
             style={styles.footBtnText}
-            onPress={() => navigation.navigate('')}>
+            onPress={() => navigationRef.current?.navigate('')}>
                 Fridge
             </TouchableOpacity>
 
             {/* Myndavél */}
             <TouchableOpacity
             style={styles.footBtnText}
-            onPress={() => navigation.navigate('')}>
+            onPress={() => navigationRef.current?.navigate('')}>
                 Camera
             </TouchableOpacity>
 
