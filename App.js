@@ -2,8 +2,11 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createRef } from 'react';
+
 import { StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Footer from './components/Footer';
 
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
@@ -13,6 +16,8 @@ import SettingsScreen from './screens/Settings';
 import { firebase } from './database/config';
 
 const Stack = createStackNavigator();
+const navigationRef = createRef();
+
 
 export default function App() {
   
@@ -72,6 +77,7 @@ export default function App() {
             <Stack.Screen name="Registration" component={RegistrationScreen} screenOptions={{headerShown: false}}/>
         </Stack.Group>
       </Stack.Navigator>
+      <Footer navigationRef={navigationRef}/>
     </NavigationContainer>
   );
 }
