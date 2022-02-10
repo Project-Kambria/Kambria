@@ -17,13 +17,13 @@ export default function Footer(navigationRef) {
             <TouchableOpacity
             style={styles.footBtnText}
             onPress={() => navigationRef.current?.navigate('')}>
-                <Text style={styles.coolText}>B</Text>
+                <Text style={styles.coolText}>C</Text>
             </TouchableOpacity>
 
             {/* Search */}
             <TouchableOpacity
             style={styles.footBtnText}>
-                <Text style={styles.coolText}>C</Text>
+                <Text style={styles.coolText}>B</Text>
             </TouchableOpacity>
         </View>
     );
@@ -32,14 +32,15 @@ export default function Footer(navigationRef) {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent:'space-evenly',
         flexDirection: 'row',
-        backgroundColor: '#acacac',
+        backgroundColor: '#FF9622',
     },
     footBtnText: {
         padding: 10
     },
     coolText: {
-      fontFamily: 'icomoon-svg-icons'
+      fontFamily: 'icomoon-svg-icons',
+      fontSize: 40,
     }
 })
