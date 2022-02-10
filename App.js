@@ -54,7 +54,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={user ? 'HomeScreen' : 'Login'}>
-        <Stack.Group screenOptions={{headerShown: false}}>
+        <Stack.Group>
         <Stack.Screen screenOptions={{ headerStyle: { backgroundColor: '#1ac4ac', }, headerTintColor: '#fff', }} name="HomeScreen" options={({navigation}) => ({
               headerRight: () => (
                 <TouchableOpacity
@@ -73,8 +73,8 @@ export default function App() {
               headerTintColor: '#fff',
             }} name="Settings" component={SettingsScreen}>
             </Stack.Screen>
-            <Stack.Screen name="Login" component={LoginScreen} screenOptions={{headerShown: false}}/>
-            <Stack.Screen name="Registration" component={RegistrationScreen} screenOptions={{headerShown: false}}/>
+            <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="Registration" component={RegistrationScreen} options={{headerShown: false}}/>
         </Stack.Group>
       </Stack.Navigator>
       <Footer navigationRef={navigationRef}/>
