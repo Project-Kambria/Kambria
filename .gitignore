@@ -11,6 +11,7 @@ npm-debug.*
 web-build/
 apiKey.txt
 package-lock.json
+config.js
 
 # macOS
 .DS_Store
