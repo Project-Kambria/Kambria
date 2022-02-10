@@ -4,7 +4,7 @@ import { firebase } from '../database/config';
 
 import Recipebox from '../components/Recipebox';
 
-export default function HomeScreen(props) {
+export default function HomeScreen({ navigation }) {
 
     let state = {
         // Test data

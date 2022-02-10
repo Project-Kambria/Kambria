@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, Touch
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { firebase } from '../database/config'
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -26,8 +26,7 @@ export default function LoginScreen({navigation}) {
                             alert("User does not exist anymore.")
                             return;
                         }
-                        const user = firestoreDocument.data()
-                        navigation.navigate('Home', {user})
+                        navigation.navigate('HomeScreen')
                     })
                     .catch(error => {
                         alert(error)

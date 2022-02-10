@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, Touch
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { firebase } from '../database/config'
 
-export default function RegistrationScreen({navigation}) {
+export default function RegistrationScreen({ navigation }) {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -33,7 +33,7 @@ export default function RegistrationScreen({navigation}) {
                     .doc(uid)
                     .set(data)
                     .then(() => {
-                        navigation.navigate('Home', {user: data})
+                        navigation.navigate('Home')
                     })
                     .catch((error) => {
                         alert(error)
