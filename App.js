@@ -1,6 +1,7 @@
-import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -9,31 +10,73 @@ import LoginScreen from './screens/Login';
 import RegistrationScreen from './screens/Registration';
 import SettingsScreen from './screens/Settings';
 
+import { firebase } from './database/config';
+
 const Stack = createStackNavigator();
 
 export default function App() {
+  
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
+
+  /*if (loading) {	
+    return (	
+      <></>	
+    )	
+  }
+
+  useEffect(() => {
+    const usersRef = firebase.firestore().collection('users');
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        usersRef
+          .doc(user.uid)
+          .get()
+          .then((document) => {
+            const userData = document.data()
+            setLoading(false)
+            setUser(userData)
+          })
+          .catch((error) => {
+            setLoading(false)
+          });
+      } else {
+        setLoading(false)
+      }
+    });
+  }, []);*/
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Group screenOptions={{ headerStyle: { backgroundColor: '#1ac4ac', }, headerTintColor: '#fff', }}>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={({navigation}) => ({
+        { user ? (
+          <Stack.Group screenOptions={{headerShown: false}}>
+              <Stack.Screen screenOptions={{ headerStyle: { backgroundColor: '#1ac4ac', }, headerTintColor: '#fff', }} name="Home" component={HomeScreen} options={({navigation}) => ({
               headerRight: () => (
                 <TouchableOpacity
-                  style={styles.navBtn}
-                  onPress={() => navigation.navigate('Settings')}>
-                    <Text style={styles.navBtnText}>[Settings]</Text>
+                style={styles.navBtn}
+                onPress={() => navigation.navigate('Settings')}>
+                  <Text style={styles.navBtnText}>[Settings]</Text>
                 </TouchableOpacity>
               )
-            })} />
-            <Stack.Screen name="Settings" component={SettingsScreen}/>
-        </Stack.Group>
-        <Stack.Group screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Registration" component={RegistrationScreen} />
-        </Stack.Group>
+              })}>
+              {props => <HomeScreen {...props} extraData={user} />}
+            </Stack.Screen>
+            <Stack.Screen screenOptions={{
+              headerStyle: {
+                backgroundColor: '#1ac4ac',
+              },
+              headerTintColor: '#fff',
+            }} name="Settings" component={SettingsScreen}
+            >
+            </Stack.Screen>
+          </Stack.Group>
+        ) : (
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} screenOptions={{headerShown: false}} />
+            <Stack.Screen name="Registration" component={RegistrationScreen} screenOptions={{headerShown: false}}/>
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

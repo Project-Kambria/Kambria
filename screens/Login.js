@@ -1,54 +1,42 @@
-import React, { Component } from 'react';
-import firebase from '../database/config'
-import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard} from 'react-native';
-import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import React, { useState } from 'react'
+import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, TouchableOpacity} from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { firebase } from '../database/config'
 
-class Login extends Component {
-    constructor() {
-      super();
-      this.state = { 
-        email: '', 
-        password: '',
-        isLoading: false
-      }
+export default function LoginScreen({navigation}) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const onFooterLinkPress = () => {
+        navigation.navigate('Registration')
     }
-  
-    onTextChange = (val, prop) => {
-      const state = this.state;
-      state[prop] = val;
-      this.setState(state);
-    }
-  
-    signIn = () => {
-      if(this.state.email === '' && this.state.password === '') {
-        Alert.alert('Enter correct details.')
-      } else {
-        this.setState({
-          isLoading: true,
-        })
+
+    const onLoginPress = () => {
         firebase
-        .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-            email: '', 
-            password: ''
-          })
-          this.props.navigation.navigate('Home')
-          alert('Logged in to app')
-        })
-        .catch(error => this.setState({ errorMessage: error.message }))
-      }
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .then((response) => {
+                const uid = response.user.uid
+                const usersRef = firebase.firestore().collection('users')
+                usersRef
+                    .doc(uid)
+                    .get()
+                    .then(firestoreDocument => {
+                        if (!firestoreDocument.exists) {
+                            alert("User does not exist anymore.")
+                            return;
+                        }
+                        const user = firestoreDocument.data()
+                        navigation.navigate('Home', {user})
+                    })
+                    .catch(error => {
+                        alert(error)
+                    });
+            })
+            .catch(error => {
+                alert(error)
+            })
     }
-  
-    render() {
-      if(this.state.isLoading){
-        return(
-          <View style={styles.loading}>
-            <ActivityIndicator size="large" color="grey"/>
-          </View>
-        )
-      }
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior='padding'>
@@ -58,28 +46,29 @@ class Login extends Component {
                     <Text style={styles.titleAlt}>Kambria]</Text>
                 </View>
             </TouchableWithoutFeedback>
-                <View style={styles.form}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Email"
-                        value={this.state.email}
-                        onChangeText={(val) => this.onTextChange(val, 'email')}/>
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Password'
-                        value={this.state.password}
-                        onChangeText={(val) => this.onTextChange(val, 'password')}
-                        secureTextEntry={true}/>
-                        <View style={styles.btnContainer}>
-                            <TouchableOpacity title="Log in" onPress={() => this.signIn()}><Text>Submit</Text></TouchableOpacity>
-                        </View>
-                </View>
+            <View style={styles.form}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    onChangeText={(text) => setEmail(text)}
+                    value={email}/>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Password'
+                    secureTextEntry={true}
+                    onChangeText={(text) => setPassword(text)}
+                    value={password}/>
+                <TouchableOpacity
+                    style={styles.btnContainer}
+                    onPress={() => onLoginPress()}>
+                    <Text style={styles.buttonTitle}>Log in</Text>
+                </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={() => this.props.navigation.navigate('Registration')} style={styles.footerLink}>Sign up</Text></Text>
+                    <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
                 </View>
+            </View>
         </KeyboardAvoidingView>
-    );
-}
+    )
 }
 
 const styles = StyleSheet.create({
@@ -110,6 +99,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    btnContainer: {
+        backgroundColor: '#1ac4ac',
+        marginTop: 10,
+    },
     footerView: {
         alignItems: 'center',
         marginTop: 20
@@ -118,10 +111,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#2e2e2d'
     },
-    btnContainer: {
-        backgroundColor: '#1ac4ac',
-        marginTop: 10,
+    footerLink: {
+        color: "#788eec",
+        fontWeight: "bold",
+        fontSize: 16
     }
 })
-
-export default Login;

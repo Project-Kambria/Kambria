@@ -1,12 +1,9 @@
-// Import the functions you need from the SDKs you need
-import * as firebase from "firebase/compat";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import * as firebase from 'firebase/compat';
+import '@firebase/auth';
+import '@firebase/firestore';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyByiZgiKuLfPt0e9KETMVQ4YiLtDuE2Kr8",
+  apiKey: "api-key",
   authDomain: "project-kambria-db.firebaseapp.com",
   databaseURL: "https://project-kambria-db-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "project-kambria-db",
@@ -16,13 +13,8 @@ const firebaseConfig = {
   measurementId: "G-MJWWLRDE49"
 };
 
-let app;
-if (firebase.apps.length === 0) {
-  app = firebase.initializeApp(firebaseConfig);
-} else {
-  app = firebase.app()
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
 }
 
-const auth = firebase.auth()
-
-export { auth };
+export { firebase };

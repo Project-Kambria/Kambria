@@ -1,11 +1,10 @@
-import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native';
+import { firebase } from '../database/config';
 
 import Recipebox from '../components/Recipebox';
 
-export default function HomeScreen({}) {
-    const navigation = useNavigation()
+export default function HomeScreen(props) {
 
     let state = {
         // Test data
@@ -47,7 +46,7 @@ export default function HomeScreen({}) {
                 }
             </View>
         </ScrollView>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
