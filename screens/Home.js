@@ -4,7 +4,7 @@ import { firebase } from '../database/config';
 
 import Recipebox from '../components/Recipebox';
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
 
     let state = {
         // Test data
@@ -37,8 +37,8 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.recipesContainer}>
                 {
                     state.recipes.map((item, index) => (
-                        <Recipebox 
-                            key = {item.id} 
+                        <Recipebox
+                            key = {item.id}
                             name = {item.name}
                             onPress = {() => alertItemName(item)}
                         />

@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, TouchableOpacity} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useNavigate } from 'react-router-native';
 import { firebase } from '../database/config'
 
-export default function LoginScreen({ navigation }) {
+const LoginScreen = (props) => {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate();
+
     const onFooterLinkPress = () => {
-        navigation.navigate('Registration')
+        navigate('/register')
     }
 
     const onLoginPress = () => {
@@ -26,7 +30,8 @@ export default function LoginScreen({ navigation }) {
                             alert("User does not exist anymore.")
                             return;
                         }
-                        navigation.navigate('HomeScreen')
+                        props.setUser(uid)
+                        navigate('/home');
                     })
                     .catch(error => {
                         alert(error)
@@ -116,3 +121,5 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 })
+
+export default LoginScreen;

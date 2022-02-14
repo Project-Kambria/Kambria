@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, TouchableOpacity} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useNavigate } from 'react-router-native';
 import { firebase } from '../database/config'
 
-export default function RegistrationScreen({ navigation }) {
+const RegistrationScreen = (props) => {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const navigate = useNavigate();
+
     const onFooterLinkPress = () => {
-        navigation.navigate('Login')
+        navigate('/login')
     }
 
     const onRegisterPress = () => {
@@ -33,7 +36,8 @@ export default function RegistrationScreen({ navigation }) {
                     .doc(uid)
                     .set(data)
                     .then(() => {
-                        navigation.navigate('HomeScreen')
+                        props.setUser(uid)
+                        navigate('/home')
                     })
                     .catch((error) => {
                         alert(error)
@@ -150,3 +154,5 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 })
+
+export default RegistrationScreen;
