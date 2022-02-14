@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'space-evenly',
         flexDirection: 'row',
-        backgroundColor: '#FF9622',
+        backgroundColor: '#1ac4ac',
     },
     headBtnText: {
-        padding: 10
+        padding: 10,
     },
 })
