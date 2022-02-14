@@ -1,0 +1,20 @@
+import * as firebase from 'firebase/compat';
+import '@firebase/auth';
+import '@firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "api-key",
+  authDomain: "project-kambria-db.firebaseapp.com",
+  databaseURL: "https://project-kambria-db-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "project-kambria-db",
+  storageBucket: "project-kambria-db.appspot.com",
+  messagingSenderId: "584482984831",
+  appId: "1:584482984831:web:d193bfb2cd9de5aa50c04a",
+  measurementId: "G-MJWWLRDE49"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+export { firebase };
