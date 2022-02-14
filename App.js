@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
 
 import { NativeRouter, Route, Routes, Link } from 'react-router-native';
 import Footer from './components/Footer';
@@ -14,19 +13,20 @@ export default function App() {
   const [user, setUser] = useState(null)
 
   return (
-    <NativeRouter>
-      {user ? <Header/> : null}
+      <NativeRouter>
+        {user ? <Header/> : null}
 
-      <Routes>
-        <Route exact path="/" element={user ? <HomeScreen/> : <LoginScreen setUser={setUser}/>}/>
-        <Route path="/home" element={<HomeScreen/>}/>
-        <Route path="/login" element={<LoginScreen setUser={setUser}/>}/>
-        <Route path="/register" element={<RegistrationScreen setUser={setUser}/>}/>
-        <Route path="/settings" element={<SettingsScreen/>}/>
-      </Routes>
+        <Routes>
+          <Route exact path="/" element={user ? <HomeScreen/> : <LoginScreen setUser={setUser}/>}/>
+          <Route path="/home" element={<HomeScreen/>}/>
+          <Route path="/login" element={<LoginScreen setUser={setUser}/>}/>
+          <Route path="/register" element={<RegistrationScreen setUser={setUser}/>}/>
+          <Route path="/settings" element={<SettingsScreen/>}/>
+        </Routes>
 
-      {user ? <Footer/> : null}
-    </NativeRouter>
+        {user ? <Footer/> : null}
+
+      </NativeRouter>
   )
 
   

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Platform, StatusBar } from "react-native";
 import { Link } from 'react-router-native';
 
 
@@ -22,6 +22,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     container: {
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight: 0,
         alignItems: 'center',
         justifyContent:'space-evenly',
         flexDirection: 'row',
