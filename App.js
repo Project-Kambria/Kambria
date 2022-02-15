@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
 
 import { NativeRouter, Route, Routes, Link } from 'react-router-native';
 import Footer from './components/Footer';
+import Header from './components/Header';
 import HomeScreen from './screens/Home';
 import LoginScreen from './screens/Login';
 import RegistrationScreen from './screens/Registration';
@@ -14,16 +14,7 @@ export default function App() {
 
   return (
     <NativeRouter>
-      <View>
-        <View>
-          <Link to="/" underlayColor="f0f4f7">
-            <Text>Home</Text>
-          </Link>
-          <Link to="/settings" underlayColor="f0f4f7">
-            <Text>Settings</Text>
-          </Link>
-        </View>
-      </View>
+      {user ? <Header/> : null}
 
       <Routes>
         <Route exact path="/" element={user ? <HomeScreen/> : <LoginScreen setUser={setUser}/>}/>
