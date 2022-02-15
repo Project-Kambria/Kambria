@@ -17,9 +17,6 @@ export default function HomeScreen() {
         });
       }, []);
 
-      console.log(recipes);
-
-
     return (
         <ScrollView>
             <View style={styles.recipesContainer}>
