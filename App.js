@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { NativeRouter, Route, Routes, Link } from 'react-router-native';
+import { NativeRouter, Route, Routes } from 'react-router-native';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import HomeScreen from './screens/Home';
