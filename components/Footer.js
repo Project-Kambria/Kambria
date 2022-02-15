@@ -1,10 +1,19 @@
 import { View, StyleSheet, Text } from "react-native";
-import { useFonts } from "expo-font";
+import * as Font from "expo-font";
 import { Link } from 'react-router-native';
+import { useEffect } from "react";
 
 
 export default function Footer() {
-    let [fontsLoaded] = useFonts({'icomoon-svg-icons': require('../assets/fonts/icomoon-svg-icons.ttf')})
+    
+    useEffect(() => {
+        async function getFonts() {
+            await Font.loadAsync({
+                'icomoon-svg-icons': require('../assets/fonts/icomoon-svg-icons.ttf')
+            });
+        }
+        getFonts();
+    }, []);
 
     return (
         <View style={styles.container}>
