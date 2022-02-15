@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Platform, StatusBar } from "react-native";
 import { Link } from 'react-router-native';
 
 
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-evenly',
         flexDirection: 'row',
         backgroundColor: '#1ac4ac',
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
     headBtnText: {
         padding: 10,

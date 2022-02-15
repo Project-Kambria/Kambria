@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
 
 import { NativeRouter, Route, Routes, Link } from 'react-router-native';
 import Footer from './components/Footer';
