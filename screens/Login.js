@@ -15,6 +15,10 @@ const LoginScreen = (props) => {
         navigate('/register')
     }
 
+    const onOtherFooterLinkPress = () => {
+        navigate('/home')
+    }
+
     const onLoginPress = () => {
         firebase
             .auth()
@@ -70,6 +74,12 @@ const LoginScreen = (props) => {
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
                 </View>
+                <View style={styles.footerView}>
+                    <Text style={styles.footerText}><Text onPress={() => onOtherFooterLinkPress()} style={styles.footerLink}>Continue without signing in</Text></Text>
+                </View>
+            </View>
+            <View style={styles.bottomView}>
+                <Text>Project-Kambria © 2022</Text>
             </View>
         </KeyboardAvoidingView>
     )
@@ -79,11 +89,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     title: {
         fontSize: 55,
         color: '#000',
+        marginTop: 50
     },
     titleAlt: {
         fontSize: 55,
@@ -119,6 +129,12 @@ const styles = StyleSheet.create({
         color: "#788eec",
         fontWeight: "bold",
         fontSize: 16
+    },
+    bottomView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        marginBottom: 30
     }
 })
 
