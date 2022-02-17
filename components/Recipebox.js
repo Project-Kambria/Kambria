@@ -1,11 +1,14 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, Image, View} from 'react-native';
+import { Link } from 'react-router-native';
 
 export default function Recipebox(props) {
     return (
-        <View style={styles.container}>
-            <Image style={styles.recipeImage} source={{uri: props.image}}/>
-          <Text style={styles.text}>{props.name}</Text>
-        </View>
+        <Link to={'/recipe/' + props.id} style={styles.container}>
+            <View>
+                <Image style={styles.recipeImage} source={{uri: props.image}}/>
+                <Text style={styles.text}>{props.name}</Text>
+            </View>
+        </Link>
     );
 }
 
