@@ -24,6 +24,7 @@ export default function HomeScreen() {
                     recipes.map((data) => (
                         <Recipebox 
                             key = {data.id}
+                            id = {data.id}
                             name = {data.title}
                             image = {data.image}
                         />
