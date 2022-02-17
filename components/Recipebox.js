@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 export default function Recipebox(props) {
     return (
         <View style={styles.container}>
-            <Image style={styles.recipeImage} source={require('../assets/placeholder.png')}/>
+            <Image style={styles.recipeImage} source={{uri: props.image}}/>
           <Text style={styles.text}>{props.name}</Text>
         </View>
     );
