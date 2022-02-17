@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { firebase } from '../database/config';
 
@@ -6,41 +6,26 @@ import Recipebox from '../components/Recipebox';
 
 export default function HomeScreen() {
 
-    let state = {
-        // Test data
-        recipes: [
-            {
-                id: 0,
-                name: 'Recipe 1',
-            },
-            {
-                id: 1,
-                name: 'Recipe 2',
-            },
-            {
-                id: 2,
-                name: 'Recipe 3',
-            },
-            {
-                id: 3,
-                name: 'Recipe 4',
-            },
-        ]
-    }
+    const [recipes, setRecipes] = useState([]);
 
-    let alertItemName = (item) => {
-        alert(item.name)
-    }
+    useEffect(() => {
+        const db = firebase.firestore();
+        return db.collection('recipes').onSnapshot((snapshot) => {
+          const recipeData = [];
+          snapshot.forEach((doc) => recipeData.push({ ...doc.data(), id: doc.id }));
+          setRecipes(recipeData);
+        });
+      }, []);
 
     return (
         <ScrollView>
             <View style={styles.recipesContainer}>
                 {
-                    state.recipes.map((item, index) => (
+                    recipes.map((data) => (
                         <Recipebox 
-                            key = {item.id} 
-                            name = {item.name}
-                            onPress = {() => alertItemName(item)}
+                            key = {data.id}
+                            name = {data.title}
+                            image = {data.image}
                         />
                     ))
                 }
