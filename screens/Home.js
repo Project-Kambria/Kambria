@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import { firebase } from '../database/config';
 
 import Recipebox from '../components/Recipebox';
+import SearchBar from '../components/Searchbar';
 
 export default function HomeScreen() {
 
@@ -18,6 +19,8 @@ export default function HomeScreen() {
       }, []);
 
     return (
+        <View>
+          <SearchBar/>
         <ScrollView>
             <View style={styles.recipesContainer}>
                 {
@@ -31,6 +34,8 @@ export default function HomeScreen() {
                 }
             </View>
         </ScrollView>
+        </View>
+
     )
 }
 
