@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, TouchableOpacity} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useNavigate } from 'react-router-native';
-import { firebase } from '../database/config'
+import { firebase } from '../database/config';
 
 const RegistrationScreen = (props) => {
     const [fullName, setFullName] = useState('')
@@ -30,6 +30,7 @@ const RegistrationScreen = (props) => {
                     id: uid,
                     email,
                     fullName,
+                    ingredients: [-1],
                 };
                 const usersRef = firebase.firestore().collection('users')
                 usersRef
