@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import { useParams } from 'react-router-native';
 import { firebase } from '../database/config';
 
@@ -28,31 +28,33 @@ export default function RecipeScreen() {
         )
     } else {
         return (
-            <View style={styles.container}>
-                <Image style={styles.recipeImage} source={{uri: recipe.image}} resizeMode="cover"/>
-                <Text style={styles.title}>{recipe.title}</Text>
-                <Text style={styles.description}>{recipe.description}</Text>
-                <View style={styles.instructions}>
-                    {
-                        recipe.instructions.map((item, index) => (
-                            <Text
-                                key={index}
-                                style={styles.instructionChild}>
-                                    {item}
-                            </Text>
-                        ))
-                    }
+            <ScrollView>
+                <View style={styles.container}>
+                    <Image style={styles.recipeImage} source={{uri: recipe.image}} resizeMode="cover"/>
+                    <Text style={styles.title}>{recipe.title}</Text>
+                    <Text style={styles.description}>{recipe.description}</Text>
+                    <View style={styles.instructions}>
+                        {
+                            recipe.instructions.map((item, index) => (
+                                <Text
+                                    key={index}
+                                    style={styles.instructionChild}>
+                                        {item}
+                                </Text>
+                            ))
+                        }
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
         padding: 20,
+        justifyContent: "center",
+        alignItems: "center",
     },
     recipeImage: {
         width: 300,
