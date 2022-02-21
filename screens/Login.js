@@ -17,6 +17,7 @@ const LoginScreen = (props) => {
     }
 
     const onOtherFooterLinkPress = () => {
+        props.setUser(1)
         navigate('/home')
     }
 
