@@ -37,8 +37,7 @@ export default function RecipeScreen() {
                         {
                             recipe.instructions.map((item, index) => (
                                 <Text
-                                    key={index}
-                                    style={styles.instructionChild}>
+                                    key={index}>
                                         {item}
                                 </Text>
                             ))
