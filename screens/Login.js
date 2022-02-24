@@ -2,7 +2,8 @@ import React, { useState} from 'react'
 import {StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Keyboard, TouchableOpacity} from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useNavigate } from 'react-router-native';
-import { firebase } from '../database/config'
+import { firebase } from '../database/config';
+
 
 const LoginScreen = (props) => {
 
@@ -13,6 +14,11 @@ const LoginScreen = (props) => {
 
     const onFooterLinkPress = () => {
         navigate('/register')
+    }
+
+    const onOtherFooterLinkPress = () => {
+        props.setUser(1)
+        navigate('/home')
     }
 
     const onLoginPress = () => {
@@ -70,6 +76,12 @@ const LoginScreen = (props) => {
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
                 </View>
+                <View style={styles.footerView}>
+                    <Text style={styles.footerText}><Text onPress={() => onOtherFooterLinkPress()} style={styles.footerLink}>Continue without signing in</Text></Text>
+                </View>
+            </View>
+            <View style={styles.bottomView}>
+                <Text>Project-Kambria © 2022</Text>
             </View>
         </KeyboardAvoidingView>
     )
@@ -79,11 +91,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     title: {
         fontSize: 55,
         color: '#000',
+        marginTop: 50
     },
     titleAlt: {
         fontSize: 55,
@@ -119,6 +131,12 @@ const styles = StyleSheet.create({
         color: "#788eec",
         fontWeight: "bold",
         fontSize: 16
+    },
+    bottomView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        marginBottom: 30
     }
 })
 
