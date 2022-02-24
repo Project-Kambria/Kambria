@@ -49,7 +49,7 @@ export default function App() {
 
           <Route path="/login" element={<LoginScreen setUser={setUser}/>}/>
           <Route path="/register" element={<RegistrationScreen setUser={setUser}/>}/>
-          <Route path="/settings" element={<SettingsScreen/>}/>
+          <Route path="/settings" element={<SettingsScreen setUser={setUser}/>}/>
         </Routes>
   
         {user ? <Footer uid={user}/> : null}
