@@ -24,7 +24,7 @@ export default function RecipeScreen() {
 
     if (loading) {
         return (
-          <View><Text>Loading...</Text></View>
+          <ScrollView><Text>Loading...</Text></ScrollView>
         )
     } else {
         return (
