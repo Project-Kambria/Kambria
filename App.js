@@ -13,9 +13,13 @@ import { View, Text } from 'react-native';
 import RecipeScreen from './screens/Recipe';
 import FridgeScreen from './screens/Fridge';
 
+import { LogBox } from 'react-native';
+
 export default function App() {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
+
+  LogBox.ignoreLogs(['Setting a timer']);
 
   useEffect(() => {
     async function getFonts() {

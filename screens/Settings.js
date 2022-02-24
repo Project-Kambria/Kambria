@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 export default function SettingsScreen() {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text>TODO: Add some settings here</Text>
-        </View>
+        </ScrollView>
     );
 }
 
