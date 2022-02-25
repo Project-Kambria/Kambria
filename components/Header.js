@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     kambria: {
       fontSize:24,
-      fontWeight: 700,
+      fontWeight: "700",
       fontStyle: 'italic',
     },
 })

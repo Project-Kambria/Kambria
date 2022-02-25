@@ -66,14 +66,13 @@ export default function HomeScreen() {
 
 
     return (
-        <View>
+        <ScrollView>
           <SearchBar
           searchPhrase={searchPhrase}
           setSearchPhrase={setSearchPhrase}
           clicked={clicked}
           setClicked={setClicked}
           />
-        <ScrollView>
             <View style={styles.recipesContainer} id='mainContainer'>
                 {
                     recipes.map((data) => (
@@ -83,7 +82,6 @@ export default function HomeScreen() {
                 }
             </View>
         </ScrollView>
-        </View>
 
     )
 }
