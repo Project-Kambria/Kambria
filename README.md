@@ -57,11 +57,15 @@ Undir recipes eru uppskriftir með id, 0 og upp. Undir hverri uppskrift eru: des
 
 ### Skjámyndir og youtube video
 
-![screenshot1]()
-![screenshot2]()
-![screenshot3]()
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094350_Expo_Go.jpg" width="180" height="300" >
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094343_Expo_Go.jpg" width="180" height="300" >
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094339_Expo_Go.jpg" width="180" height="300" >
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094332_Expo_Go.jpg" width="180" height="300" >
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094305_Expo_Go.jpg" width="180" height="300" >
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094256_Expo_Go.jpg" width="180" height="300" >
+<img src="https://github.com/Project-Kambria/Kambria/blob/main/db_myndir/Screenshot_20220225-094252_Expo_Go.jpg" width="180" height="300" >
 
-[Youtube myndband(óvirkur)]()
+[Youtube myndband](https://www.youtube.com/watch?v=txwPBZvsxRQ)
 
 ### Stillingar og uppsetning
 *
