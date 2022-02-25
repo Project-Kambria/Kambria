@@ -39,7 +39,7 @@ export default function App() {
     return (
       <NativeRouter>
         {user ? <Header/> : null}
-  
+
         <Routes>
           <Route exact path="/" element={user ? <HomeScreen/> : <LoginScreen setUser={setUser}/>}/>
           <Route path="/home" element={<HomeScreen/>}/>
@@ -51,6 +51,7 @@ export default function App() {
           <Route path="/register" element={<RegistrationScreen setUser={setUser}/>}/>
           <Route path="/settings" element={<SettingsScreen setUser={setUser}/>}/>
         </Routes>
+
   
         {user ? <Footer uid={user}/> : null}
       </NativeRouter>
