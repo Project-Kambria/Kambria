@@ -26,7 +26,20 @@ const RegistrationScreen = (props) => {
             .createUserWithEmailAndPassword(email, password)
             .then((response) => {
                 const uid = response.user.uid
-                const data = {
+
+                const fridgeData = {
+                    0: {
+                        0: "Milk",
+                        1: 0
+                    }
+                }
+
+                const fridgesRef = firebase.firestore().collection('fridges')
+                fridgesRef
+                    .doc(uid)
+                    .set(fridgeData)
+
+                const userData = {
                     id: uid,
                     email,
                     fullName,
@@ -35,7 +48,7 @@ const RegistrationScreen = (props) => {
                 const usersRef = firebase.firestore().collection('users')
                 usersRef
                     .doc(uid)
-                    .set(data)
+                    .set(userData)
                     .then(() => {
                         props.setUser(uid)
                         navigate('/home')
