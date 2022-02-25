@@ -1,11 +1,21 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, ScrollView, Linking} from 'react-native';
 import { useNavigate } from 'react-router-native';
 import { firebase } from '../database/config';
 
 export default function SettingsScreen(props) {
 
     const navigate = useNavigate();
+
+    const onGithubPress = () => {
+        Linking.canOpenURL("https://github.com/Project-Kambria/Kambria").then(supported => {
+            if (supported) {
+                Linking.openURL("https://github.com/Project-Kambria/Kambria");
+            } else {
+                console.log("Unable to open link...");
+            }
+        });
+    }
 
     const onLogOutPress = () => {
         firebase
@@ -22,6 +32,11 @@ export default function SettingsScreen(props) {
 
     return (
         <ScrollView style={styles.container}>
+            <TouchableOpacity
+                style={styles.btnContainer}
+                onPress={() => onGithubPress()}>
+                <Text style={styles.buttonTitle}>Project Github</Text>
+            </TouchableOpacity>
             <TouchableOpacity
                 style={styles.btnContainer}
                 onPress={() => onLogOutPress()}>
