@@ -68,7 +68,19 @@ Undir recipes eru uppskriftir með id, 0 og upp. Undir hverri uppskrift eru: des
 [Youtube myndband](https://www.youtube.com/watch?v=txwPBZvsxRQ)
 
 ### Stillingar og uppsetning
-*
+#### NodeJS
+Forritið keyrir á [**NodeJS 16.14.0^ LTS**](https://nodejs.org/en/download/) og þarf maður að setja það upp.
+
+#### Expo
+Til að keyra projectið í development og compila forritið, [þarf að nota Expo](https://expo.dev/)
+
+#### Uppsetning
+1. Fyrst þarf að clone-a projectið: `git clone https://github.com/Project-Kambria/Kambria`
+2. Fara inn í möppuna: `cd ./Kambria/`
+3. Installa dependencies: `npm install`
+4. Stilla Firebase database-ið með því að copy-a `./database/config_js.txt` í `./database/config.js` og setja inn `apiKey` sem maður finnur á Firebase Console.
+5. Síðan keyrir maður þetta með `npm start`!
+
 ### Heimildir
 
 * [React Native með firebase integration tutorial](https://www.freecodecamp.org/news/react-native-firebase-tutorial/)
