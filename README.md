@@ -43,7 +43,7 @@ Við vorum einnig með hönnun og plön fyrir admin aðgang, en komumst ekki svo
 
 ### Gagnagrunnshönnun
 
-![image](https://user-images.githubusercontent.com/54663650/155519543-0c0bf992-d387-49a9-a2c8-54158c17bc99.png)
+![image](https://user-images.githubusercontent.com/54663650/155686870-7bc5b27a-2550-4beb-b288-70d2b5cb5199.png)
 
 Gagnagrunnurinn okkar var settur upp í firebase firestore, og má sjá að við notumst við fjóra flokka. Users, recipes, ingredients og fridges. Í users eru user IDs og á bak við hvert ID eru upplýsingar users sem stilltar eru í nýskráningu: email - string, fullName - string og id - string. 
 
@@ -52,6 +52,8 @@ Undir recipes eru uppskriftir með id, 0 og upp. Undir hverri uppskrift eru: des
 Í fridges flokknum er User ID hvers users sem á þann tiltekna fridge. Undir hverju UID eru hvert ingredient fyrir sig sem user er með í fridge og eru ingredientin array af mismunandi gagnategundum. Array-ið samanstendur af titli ingredientsins - string, fjölda til af því - int og image link - string.
 
 Þessi gögn eru svo tekin öll inn í appið á viðeigandi stað með implementation á firebase firestore með react native.
+
+[Myndir af Firestore database](https://github.com/Project-Kambria/Kambria/tree/main/db_myndir)
 
 ### Skjámyndir og youtube video
 
