@@ -14,6 +14,7 @@ import RecipeScreen from './screens/Recipe';
 import FridgeScreen from './screens/Fridge';
 
 import { LogBox } from 'react-native';
+import ProfileScreen from './screens/Profile';
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -43,6 +44,7 @@ export default function App() {
         <Routes>
           <Route exact path="/" element={user ? <HomeScreen/> : <LoginScreen setUser={setUser}/>}/>
           <Route path="/home" element={<HomeScreen/>}/>
+          <Route path="/profile" element={<ProfileScreen uid={user}/>}/>
           
           <Route path="/recipe/:id" element={<RecipeScreen/>}/>
           <Route path="/fridge/:uid" element={<FridgeScreen/>}/>

@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 export default function Header() {
     return (
         <View style={styles.container}>
-            <Link to="/" activeOpacity={0.4} underlayColor="#1ac4ac">
+            <Link to="/profile" activeOpacity={0.4} underlayColor="#1ac4ac">
                 <Text style={styles.headBtnText}><Feather name='user' size={24} color='black' /></Text>
             </Link>
 
