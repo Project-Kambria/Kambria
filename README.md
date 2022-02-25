@@ -18,7 +18,7 @@ Hægt væri að nota appið þannig til að finna uppskriftir samkvæmt því se
 
 Appið gefur líka yfirsýn á hráefnum sem að notandinn hefur í gegnum innbyggðan lista sem við köllum ísskápinn.
 
-Afurð okkar virkar þannig að þú skráir þig inn, skráir aðgang eða heldur áfram án þess að skrá þig inn á login skjá. Síðan er haldið á heimaskjá þar sem þú sérð uppástungur að uppskriftum og ýmsa hnappa, svo sem stillingar, profile og footer með ísskáps-, myndavélar- og uppskriftarhnapp. Hægt er að smella beint á sample uppskriftir og skoða þær. Ísskápur, myndavél og uppskriftarhnappur virka ekki sem stendur.
+Afurð okkar virkar þannig að þú skráir þig inn, skráir aðgang eða heldur áfram án þess að skrá þig inn á login skjá. Síðan er haldið á heimaskjá þar sem þú sérð uppástungur að uppskriftum og ýmsa hnappa, svo sem stillingar, profile og footer með ísskáps-, myndavélar- og uppskriftarhnapp. Hægt er að smella beint á sample uppskriftir og skoða þær. Ísskápur takkinn virkar og hægt er að sjá eitthvað smá þar, samt ekki fulla virkna eins og við ætluðum að hafa. Myndavélar- og uppskriftartakkinn virka ekki sem stendur.
 
 ### Vefkerfi
 
@@ -43,17 +43,19 @@ Við vorum einnig með hönnun og plön fyrir admin aðgang, en komumst ekki svo
 
 ### Gagnagrunnshönnun
 
-![image](https://user-images.githubusercontent.com/54663650/155519543-0c0bf992-d387-49a9-a2c8-54158c17bc99.png)
+![image](https://user-images.githubusercontent.com/54663650/155686870-7bc5b27a-2550-4beb-b288-70d2b5cb5199.png)
 
-Gagnagrunnurinn okkar var settur upp í firebase firestore, og má sjá að við notumst við fjóra flokka. Users, recipes, ingredients og fridges. Í users eru user IDs og á bak við hvert ID eru upplýsingar users sem stilltar eru í nýskráningu: email, fullName og id. 
+Gagnagrunnurinn okkar var settur upp í firebase firestore, og má sjá að við notumst við fjóra flokka. Users, recipes, ingredients og fridges. Í users eru user IDs og á bak við hvert ID eru upplýsingar users sem stilltar eru í nýskráningu: email - string, fullName - string og id - string. 
 
-Undir recipes eru uppskriftir með id, 0 og upp. Undir hverri uppskrift eru description - string, image - string, ingredients - array af strings (sem hefði orðið collection af ingredients references), instructions - array af strings, source - string (af uppskrift) og title - string. Ingredients flokkurinn er með ingredients id, 0 og upp. Og undir hverju ingredient er title field. 
+Undir recipes eru uppskriftir með id, 0 og upp. Undir hverri uppskrift eru: description - string, image - string, ingredients - array af strings (sem hefði orðið collection af ingredients references), instructions - array af strings, source - string (af uppskrift) og title - string. Ingredients flokkurinn er með ingredients id, 0 og upp. Og undir hverju ingredient er: title - string. 
 
-Í fridges flokknum er User ID hvers users sem á þann tiltekna fridge. Undir UID eru hvert ingredient fyrir sig sem user er með í fridge og eru ingredientin array. Array-ið samanstendur af titli ingredientsins, fjölda til af því og image link.
+Í fridges flokknum er User ID hvers users sem á þann tiltekna fridge. Undir hverju UID eru hvert ingredient fyrir sig sem user er með í fridge og eru ingredientin array af mismunandi gagnategundum. Array-ið samanstendur af titli ingredientsins - string, fjölda til af því - int og image link - string.
 
 Þessi gögn eru svo tekin öll inn í appið á viðeigandi stað með implementation á firebase firestore með react native.
 
-### Skjámyndir
+[Myndir af Firestore database](https://github.com/Project-Kambria/Kambria/tree/main/db_myndir)
+
+### Skjámyndir og youtube video
 
 ![screenshot1]()
 ![screenshot2]()
@@ -64,11 +66,15 @@ Undir recipes eru uppskriftir með id, 0 og upp. Undir hverri uppskrift eru desc
 ### Stillingar og uppsetning
 *
 ### Heimildir
-*
+
+* [React Native með firebase integration tutorial](https://www.freecodecamp.org/news/react-native-firebase-tutorial/)
 
 ### Vinnuflæði
-*
+
+[Github Projects vinnuflæði](https://github.com/orgs/Project-Kambria/projects/2/views/1)
 
 ## Samantekt
 
-Að lokum, ekki er hægt að sjá myndavélina, nema hnappinn, þar sem við höfðum ekki tíma í að útfæra hana. Ísskápurinn misheppnaðist þar sem reynt var að ná virkni en hún gekk ekki eftir sem skyldi. Leitarsían komst inn á frumstig, þar sem hægt er að leita í gegnum uppskriftirnar með nafni. Höfðum ekki tíma í að útfæra merkingar fyrir sérstakar máltíðir.
+Að lokum, ekki er hægt að sjá myndavélina, nema hnappinn, þar sem við höfðum ekki tíma í að útfæra hana. Ísskápurinn misheppnaðist þar sem reynt var að ná virkni en hún gekk ekki eftir sem skyldi. Leitarsían komst inn á frumstig, þar sem hægt er að leita í gegnum uppskriftirnar með nafni. Höfðum ekki tíma í að útfæra merkingar fyrir sérstakar máltíðir. Ætluðum að hafa Google Log in feature, og takka til eða elda á recipes skjá, en náðum ekki heldur að útfæra það. 
+
+Næstu skref hefðu verið að bæta öllum þessum liðum við og tengja allt saman sem hefði þurft að tengja, ef við hefðum ætlað að ná fullri virkni, miðað við upprunalegu hugmyndina. 
