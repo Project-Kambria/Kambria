@@ -93,10 +93,4 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    show: {
-      display: 'flex',
-    },
-    hide:{
-      display: 'none',
-    },
   });
