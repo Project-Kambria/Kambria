@@ -6,7 +6,7 @@ _Nemendur: Alexander Viðar, Daníel Þór og Tristan Pétur_
 
 _Áfangi: VEFÞ2VÞ05DU - Vefforritun II, Tölvubraut, Tækniskólinn_
 
-[Tengill á vef(óvirkur)]()
+[Tengill á download fyrir app](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40tpan02/Kambria-474935fd43d744ffa3c5596b455bc5ee-signed.apk)
 
 ### Verkefnalýsing
 Tilgangurinn með þessu appi er að veita notanda uppskriftir miðað við það sem að notandinn á til í eldhúsinu.
