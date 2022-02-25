@@ -5,17 +5,17 @@ export default function Footer() {
     return (
         <View style={styles.container}>
             {/* Ísskápur */}
-            <Link to="/">
+            <Link to="/" activeOpacity={0.4} underlayColor="#1ac4ac">
                 <Text style={styles.coolText}>A</Text>
             </Link>
 
             {/* Myndavél */}
-            <Link to="/">
+            <Link to="/" activeOpacity={0.4} underlayColor="#1ac4ac">
                 <Text style={styles.coolText}>C</Text>
             </Link>
 
             {/* Search */}
-            <Link to="/">
+            <Link to="/" activeOpacity={0.4} underlayColor="#1ac4ac">
                 <Text style={styles.coolText}>B</Text>
             </Link>
         </View>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'space-evenly',
         flexDirection: 'row',
-        backgroundColor: '#FF9622',
+        backgroundColor: '#1ac4ac',
     },
     footBtnText: {
         padding: 10
