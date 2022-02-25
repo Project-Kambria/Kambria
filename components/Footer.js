@@ -1,11 +1,11 @@
 import { View, StyleSheet, Text } from "react-native";
 import { Link } from 'react-router-native';
 
-export default function Footer() {
+export default function Footer(props) {
     return (
         <View style={styles.container}>
             {/* Ísskápur */}
-            <Link to="/" activeOpacity={0.4} underlayColor="#1ac4ac">
+            <Link to={'/fridge/' + props.uid} activeOpacity={0.4} underlayColor="#1ac4ac">
                 <Text style={styles.coolText}>A</Text>
             </Link>
 

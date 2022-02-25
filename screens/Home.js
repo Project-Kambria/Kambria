@@ -58,7 +58,7 @@ export default function HomeScreen() {
     const renderrecipe = (id, title, image) => {
 
       if (states[id]){
-        return (<Recipebox key = {id} name = {title} image = {image} />)
+        return (<Recipebox key = {id} id = {id} name = {title} image = {image} />)
       }
       else {return null}
 
@@ -78,6 +78,7 @@ export default function HomeScreen() {
                 {
                     recipes.map((data) => (
                       renderrecipe(data.id, data.title, data.image)
+
                     ))
                 }
             </View>
